@@ -1,0 +1,27 @@
+services:
+  
+  naoqi_driver:
+    build: ./naoqi_driver
+    stdin_open: true
+    tty: true
+    container_name: naoqi_driver
+    command: "bash"
+    networks:
+      - ros_network
+      
+  ros-app:
+    build: .
+    stdin_open: true
+    tty: true
+    container_name: ros-app
+    command: "bash"
+    volumes:
+      - .:/workdir
+    networks:
+      - ros_network
+    depends_on:
+      - naoqi_driver
+
+
+networks:
+  ros_network:
