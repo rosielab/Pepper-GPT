@@ -1,7 +1,7 @@
 services:
   
   naoqi_driver:
-    build: ./naoqi_driver
+    image: benled1/pepper-ros:naoqi_driver
     stdin_open: true
     tty: true
     container_name: naoqi_driver
@@ -10,7 +10,7 @@ services:
       - ros_network
       
   ros-app:
-    build: .
+    image: benled1/pepper-ros:ros-app
     stdin_open: true
     tty: true
     container_name: ros-app
