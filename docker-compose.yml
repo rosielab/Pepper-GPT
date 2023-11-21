@@ -10,7 +10,7 @@ services:
       - ros_network
       
   ros-app:
-    image: benled1/pepper-ros:ros-app
+    image: benled1/pepper-ros:gpt-development-arm64
     stdin_open: true
     tty: true
     container_name: ros-app
