@@ -36,6 +36,6 @@ If you have any troubles, please check the documentation on starting up a naoqi_
 
 When developing on this project you will be editing code within the `gpt-development` container. This container has also been started up with the `docker compose up` command. In order to access it, you can use the [VSCode Dev Containers](https://code.visualstudio.com/docs/devcontainers/tutorial) extension to connect to the container.
 
-The linked tutorial will show you how to get started with this extension, however instead of selecting "New Dev Container" we will be selecting "Attach to a Running Container" from the command pallette.
+The linked tutorial will show you how to get started with this extension, however instead of selecting "New Dev Container" we will be selecting "Attach to a Running Container" from the command palette.
 
 Once you have attached to the container, you should have a VSCode window that is running inside of the `gpt-development` container. From here you can edit source code, build the project, and run it.

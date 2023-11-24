@@ -1,5 +1,5 @@
 services:
-  
+
   naoqi_driver:
     image: benled1/pepper-ros:naoqi_driver
     stdin_open: true
@@ -9,7 +9,9 @@ services:
     networks:
       - ros_network
       
-  ros-app:
+  # this contains the tts_service, the text_client, and the gpt_server
+  # basically everything that requires access to ROS messaging systems
+  ros-development:
     image: benled1/pepper-ros:gpt-development-arm64
     stdin_open: true
     tty: true
@@ -22,6 +24,17 @@ services:
     depends_on:
       - naoqi_driver
 
+  ollama:
+    image: benled1/pepper-ros:ollama-mistral-model
+    entrypoint: "ollama serve && ollama run mistral"
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama
+
+volumes:
+  ollama:
 
 networks:
   ros_network:
