@@ -1,0 +1,8 @@
+prefix=/workdir/catkin_ws/devel
+
+Name: chat-client
+Description: Description of chat-client
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

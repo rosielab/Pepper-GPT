@@ -1,0 +1,8 @@
+prefix=/workdir/catkin_ws/devel
+
+Name: gpt-server
+Description: Description of gpt-server
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

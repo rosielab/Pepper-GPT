@@ -16,7 +16,6 @@ def listener():
 
     rospy.Subscriber('audio', AudioBuffer, callback)
 
-
     rospy.spin()
 
 if __name__ == '__main__':
