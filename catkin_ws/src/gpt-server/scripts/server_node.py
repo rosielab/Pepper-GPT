@@ -38,7 +38,7 @@
 
 import rospy
 from std_msgs.msg import String
-from classes import LLMClient
+from classes.LLMClient import LLMClient
 
 url = "http://ollama:11434/api/generate"
 data = {
@@ -46,9 +46,12 @@ data = {
     "prompt": None,
     "context": None
 }
-
+pub = rospy.Publisher('model_response', String, queue_size=1)
+llm_client = LLMClient(url="http://ollama:11434/api/generate", 
+                        prompt_scheme=data, publisher=pub)
 def callback(data):
     rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data)
+    llm_client.send_prompt(data)
 
 def listener():
 
