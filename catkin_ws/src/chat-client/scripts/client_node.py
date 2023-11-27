@@ -37,21 +37,42 @@
 ## to the 'chatter' topic
 
 import rospy
+import threading
+import requests
+import json
 from std_msgs.msg import String
 
-def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
+url = "http://ollama:11434/api/generate"
+data = {
+    "model": "mistral",
+    "prompt": None,
+    "context": None
+}
+
+def client_input():
     while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
-        rospy.loginfo(hello_str)
-        pub.publish(hello_str)
-        rate.sleep()
+        client_input = input("Talk to Pepper: ")
+        # pub = rospy.Publisher('client_message', String, queue_size=1)
+        # pub.publish(String(client_input))
+        data["prompt"] = f"Your name is Pepper, you are a human having a conversation with a friend. Please keep your responses to the following prompt short and brief. Prompt: {client_input}"
+        response = requests.post(url, json=data, stream=True)
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+        # Process the streaming data, for example, iterate over lines
+            for line in response.iter_lines(decode_unicode=True):
+                if line:
+                    response_data = json.loads(line)
+                    if response_data["done"]:
+                        data["context"] = response_data["context"]
+                    print(response_data)
+                else:
+                    print(f"Error: {response.status_code}, {response.text}")
 
 if __name__ == '__main__':
     try:
-        talker()
+        client_input_thread = threading.Thread(target=client_input)
+        rospy.loginfo("Starting Client Thread:")
+        client_input_thread.start()
     except rospy.ROSInterruptException:
         pass
 

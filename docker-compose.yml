@@ -6,8 +6,8 @@ services:
     tty: true
     container_name: naoqi_driver
     command: "bash"
-    networks:
-      - ros_network
+    # networks:
+    #   - ros_network
       
   # this contains the tts_service, the text_client, and the gpt_server
   # basically everything that requires access to ROS messaging systems
@@ -19,8 +19,8 @@ services:
     command: "bash"
     volumes:
       - .:/workdir
-    networks:
-      - ros_network
+    # networks:
+    #   - ros_network
     depends_on:
       - naoqi_driver
 
@@ -31,10 +31,12 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
+    # networks:
+    #   - ros_network
     container_name: ollama
 
 volumes:
   ollama:
 
-networks:
-  ros_network:
+# networks:
+#   ros_network:
