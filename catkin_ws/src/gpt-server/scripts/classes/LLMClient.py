@@ -16,6 +16,12 @@ class LLMClient:
         self.publisher = rospy.Publisher('model_response', String, queue_size=1)
 
     def send_prompt(self, prompt):
+        """Make a request to the local LLM that contains the given prompt.
+        The request response will be streamed to the /model_response topic.
+
+        Args:
+            prompt (str): The prompt provided by the text client.
+        """
         self.prompt_scheme["prompt"] = self.prompt_prefix + str(prompt)
         response = requests.post(self.url, json=self.prompt_scheme, stream=True)
 
