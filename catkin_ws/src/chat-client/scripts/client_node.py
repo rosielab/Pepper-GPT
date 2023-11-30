@@ -6,7 +6,6 @@ import json
 from std_msgs.msg import String
 
 
-
 def client_input():
     while not rospy.is_shutdown():
         client_input = input("Talk to Pepper: ")
