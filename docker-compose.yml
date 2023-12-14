@@ -5,22 +5,20 @@ services:
     stdin_open: true
     tty: true
     container_name: naoqi_driver
-    command: "bash"
-    # networks:
-    #   - ros_network
+    command: bash
+    networks:
+      - ros_network
       
-  # this contains the tts_service, the text_client, and the gpt_server
-  # basically everything that requires access to ROS messaging systems
   ros-development:
     image: benled1/pepper-ros:gpt-development-arm64
+    container_name: ros-app
     stdin_open: true
     tty: true
-    container_name: ros-app
-    command: "bash"
+    command: bash
     volumes:
       - .:/workdir
-    # networks:
-    #   - ros_network
+    networks:
+      - ros_network
     depends_on:
       - naoqi_driver
 
@@ -31,12 +29,12 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
-    # networks:
-    #   - ros_network
+    networks:
+      - ros_network
     container_name: ollama
 
 volumes:
   ollama:
 
-# networks:
-#   ros_network:
+networks:
+  ros_network: 
