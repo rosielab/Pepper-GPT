@@ -1,7 +1,7 @@
 # Pepper GPT
 
 ## What is this project?
-This is a ROS project that allows the user to have a conversation with Pepper through a text client. The project connects with Pepper over the [naoqi_driver](https://github.com/ros-naoqi/naoqi_driver) ROS package and uses a local installation of the [mistral](https://mistral.ai/product/) LLM model supplied by [ollama](https://ollama.ai/).
+This is a ROS project that allows the user to have a conversation with [a Pepper robot](https://us.softbankrobotics.com/pepper) through a text client. The project connects with Pepper over the [naoqi_driver](https://github.com/ros-naoqi/naoqi_driver) ROS package and uses a local installation of the [mistral](https://mistral.ai/product/) LLM model supplied by [ollama](https://ollama.ai/).
 
 ## The Project Components
 
